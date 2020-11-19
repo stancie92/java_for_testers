@@ -10,10 +10,10 @@ public class Exercise1 {
 
         //subpoints 2,3,4
 
-        int sumaA = first +second;
-        int sumaB = three + four;
+        int sumA = first +second;
+        int sumB = three + four;
 
-        if(sumaA % 2 ==0 && sumaB %2 ==0){
+        if(sumA % 2 ==0 && sumB %2 ==0){
             System.out.println("Both sum are even.");
         }
         else{
