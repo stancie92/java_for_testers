@@ -65,7 +65,7 @@ public class Main {
         for (int i = 0; i < numero1.length; i++) {
             max = numero1[i];
             for (int j = i + 1; j < numero1.length; j++) {
-                if (numero[j] > max) {
+                if (numero1[j] > max) {
                     max = numero1[j];
                     numero1[j] = numero1[i];
                     numero1[i] = max;
