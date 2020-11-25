@@ -21,7 +21,7 @@ public class PC extends Computer {
             super.switchOn();
         } else {
             super.switchOff();
-           // System.out.println("You have no connection to electricity!!!");
+            System.out.println("You have no connection to electricity!!!");
         }
     }
 
