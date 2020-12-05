@@ -4,7 +4,7 @@ public class PC extends Computer {
 
     private boolean stateOfPlugin;
 
-    public PC(String name, String type, int hdd, int ram, boolean stateOfPlugin) {
+    public PC(String name, String type, Hdd hdd, Ram ram, boolean stateOfPlugin) {
         super(name, type, hdd, ram);
         this.stateOfPlugin = stateOfPlugin;
 
