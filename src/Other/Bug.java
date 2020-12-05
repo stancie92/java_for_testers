@@ -1,20 +1,22 @@
 package Other;
 
-public class Bug {
+public class Bug implements ConsoleNotification {
 
 
-    private String description;
-    private String adressEmail;
-    private int piority;
-    private boolean statusOfFindedBug;
+    protected String description;
+    protected BugReporter bugReporter;
+    protected int piority;
+    protected boolean statusOfFindedBug;
 
-    public Bug(String description, String adressEmail, int piority) {
+    public Bug(String description, BugReporter bugReporter, int piority) {
         this.description = description;
-        this.adressEmail = adressEmail;
+        this.bugReporter = bugReporter;
         this.piority = piority;
         this.statusOfFindedBug = isStatusOfFindedBug();
 
     }
+
+
 
     public String getDescription() {
         return description;
@@ -29,17 +31,7 @@ public class Bug {
         }
     }
 
-    public String getAdressEmail() {
-        return adressEmail;
-    }
 
-    public void setAdressEmail(String adressEmail) {
-        if (!adressEmail.contains("@")) {
-            System.out.println("Enter incorrect adress email");
-        } else {
-            this.adressEmail = adressEmail;
-        }
-    }
 
     public void setPiority(int piority) {
         if (piority < 1 || piority > 5) {
@@ -50,6 +42,7 @@ public class Bug {
     }
 
     public void setStatusOfFindedBug(boolean statusOfFindedBug) {
+        notifyStatusChange();
         this.statusOfFindedBug = statusOfFindedBug;
     }
 
@@ -67,12 +60,20 @@ public class Bug {
         }
     }
 
+    public BugReporter getBugReporter() {
+        return bugReporter;
+    }
+
+    public void setBugReporter(BugReporter bugReporter) {
+        this.bugReporter = bugReporter;
+    }
+
     public void getInformationAboutBug() {
-        System.out.println("All information about bugs: Description: " + description + ", Email of person who created: " + adressEmail + ", Piority: " + piority + " and Status of bugs: " + convertStatusOfBug() + ".");
+        System.out.println("All information about bugs: Description: " + description + ", Email of person who created: " + getBugReporter().getAdressEmail() + ", Piority: " + piority + " and Status of bugs: " + convertStatusOfBug() + ".");
     }
 
     public void getEmailOfAuthor() {
-        System.out.println("Adress email of person who is author of bug: " + adressEmail + ".");
+        System.out.println("Adress email of person who is author of bug: " + getBugReporter().getAdressEmail() + ".");
     }
 
     public int getPiority() {
@@ -84,5 +85,18 @@ public class Bug {
         System.out.println("Your bug is " + convertStatusOfBug() + ".");
     }
 
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "description='" + description + '\'' +
+                ", bugReporter=" + bugReporter +
+                ", piority=" + piority +
+                ", statusOfFindedBug=" + statusOfFindedBug +
+                '}';
+    }
 
+    @Override
+    public void notifyStatusChange() {
+        System.out.println("Status of bug is changed!!!");
+    }
 }
