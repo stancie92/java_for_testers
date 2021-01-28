@@ -1,6 +1,8 @@
 package Other;
 
-public class Bug implements ConsoleNotification {
+import java.util.Objects;
+
+public class Bug implements ConsoleNotification, Comparable<Bug> {
 
 
     protected String description;
@@ -16,7 +18,21 @@ public class Bug implements ConsoleNotification {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bug bug = (Bug) o;
+        return piority == bug.piority &&
+                statusOfFindedBug == bug.statusOfFindedBug &&
+                description.equals(bug.description) &&
+                bugReporter.equals(bug.bugReporter);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, bugReporter, piority, statusOfFindedBug);
+    }
 
     public String getDescription() {
         return description;
@@ -98,5 +114,10 @@ public class Bug implements ConsoleNotification {
     @Override
     public void notifyStatusChange() {
         System.out.println("Status of bug is changed!!!");
+    }
+
+    @Override
+    public int compareTo(Bug bug) {
+        return (this.getDescription().compareTo(bug.getDescription()));
     }
 }
